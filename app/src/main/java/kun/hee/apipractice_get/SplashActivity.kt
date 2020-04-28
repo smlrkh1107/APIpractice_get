@@ -32,7 +32,6 @@ class SplashActivity : BaseActivity() {
                 startActivity(myIntent)
                 finish() // 뒤로가기해도 이 화면으로 가지지 않아.
             }
-
             else { //자동로그인이네
 //                토큰이 저장되어있다면, 이 토큰으로 사용자 정보를 받아서
 //                GlobalData에 저장하고 액티비티 전환.
