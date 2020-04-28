@@ -1,5 +1,6 @@
 package kun.hee.apipractice_get
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -34,6 +35,9 @@ class LoginActivity : BaseActivity() {
                         val token = data.getString("token")
 
                         ContextUtil.setUserToken(mContext, token)
+
+                        val myIntent = Intent(mContext, MyPageActivity::class.java)
+                        startActivity(myIntent)
                     }
 
                     else {
