@@ -8,6 +8,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 import kun.hee.apipractice_get.datas.User
 import kun.hee.apipractice_get.utils.ConnectServer
 import kun.hee.apipractice_get.utils.ContextUtil
+import kun.hee.apipractice_get.utils.GlobalData
 import org.json.JSONObject
 
 class LoginActivity : BaseActivity() {
@@ -35,8 +36,9 @@ class LoginActivity : BaseActivity() {
                         val user = data.getJSONObject("user")
                         val token = data.getString("token")
 
-                        val loginUser = User.getUserFromJSonObject(user)
+                        val nowLoginUser = User.getUserFromJSonObject(user)
 
+                        val GlobalData.loginUser = nowLoginUser
                         ContextUtil.setUserToken(mContext, token)
 
                         val myIntent = Intent(mContext, MyPageActivity::class.java)
