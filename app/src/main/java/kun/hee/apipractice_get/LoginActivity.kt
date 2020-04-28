@@ -1,12 +1,11 @@
 package kun.hee.apipractice_get
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
-class LogInActivity : BaseActivity() {
+class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_log_in)
+        setContentView(R.layout.activity_login)
         setupEvents()
         setValues()
     }
