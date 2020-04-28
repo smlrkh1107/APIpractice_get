@@ -2,6 +2,7 @@ package kun.hee.apipractice_get
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_login.*
 import kun.hee.apipractice_get.utils.ConnectServer
 import org.json.JSONObject
@@ -23,6 +24,21 @@ class LoginActivity : BaseActivity() {
             ConnectServer.postRequestLogin(mContext, id, pw, object: ConnectServer.JsonResponseHandler{
                 override fun onResponse(json: JSONObject) {
                     Log.d("로그인응답", json.toString())
+
+                    val code = json.getInt("code")
+
+                    if (code == 200){
+                        val data = json.getJSONObject("data")
+                        val user = data.getJSONObject("user")
+                        val token = data.getString("token")
+                    }
+
+                    else {
+                        val message = json.getString("message")
+                        runOnUiThread{
+                            Toast.makeText(mContext, message, Toast.LENGTH_SHORT).show()
+                        }
+                    }
                 }
 
             })
