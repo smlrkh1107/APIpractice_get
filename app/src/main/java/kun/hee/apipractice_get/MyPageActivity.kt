@@ -18,8 +18,8 @@ class MyPageActivity : BaseActivity() {
     }
 
     override fun setValues() {
-
-        nameTxt.text = GlobalData.loginUser?.name
+10
+        nameTxt.text = GlobalData.loginUser?.name //?로 받을시, 자동로그인시 앱이 죽지는 않는데 가져오질 못해
         phoneTxt.text = GlobalData.loginUser?.phoneNum
 
     }
