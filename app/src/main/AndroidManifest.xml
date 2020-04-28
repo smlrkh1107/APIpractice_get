@@ -13,11 +13,8 @@
 
 <!--        Splash에 위에 제목 바 열기 싫어!-->
         <activity android:name=".SplashActivity"
-            android:theme="@style/Theme.AppCompat.NoActionBar"></activity>
-
-
-        <activity android:name=".SplashActivity">
-            <intent-filter>
+            android:theme="@style/Theme.AppCompat.NoActionBar">
+         <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />

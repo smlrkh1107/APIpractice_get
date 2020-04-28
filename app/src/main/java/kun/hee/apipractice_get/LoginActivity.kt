@@ -1,6 +1,7 @@
 package kun.hee.apipractice_get
 
 import android.os.Bundle
+import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -12,6 +13,9 @@ class LoginActivity : BaseActivity() {
 
 
     override fun setupEvents() {
+        loginBtn.setOnClickListener {
+
+        }
 
     }
 
