@@ -65,6 +65,7 @@ class ConnectServer {
             phoneNum: String,
             handler: JsonResponseHandler?
         ) {
+
             val client = OkHttpClient()
             val urlStr = "${BASE_URL}/auth"
 
