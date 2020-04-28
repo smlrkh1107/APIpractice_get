@@ -38,7 +38,7 @@ class LoginActivity : BaseActivity() {
 
                         val nowLoginUser = User.getUserFromJSonObject(user)
 
-                        val GlobalData.loginUser = nowLoginUser
+                        GlobalData.loginUser = nowLoginUser
                         ContextUtil.setUserToken(mContext, token)
 
                         val myIntent = Intent(mContext, MyPageActivity::class.java)

@@ -1,8 +1,10 @@
 package kun.hee.apipractice_get.utils
 
+import kun.hee.apipractice_get.datas.User
+
 class GlobalData {
 
     companion object {
-        val loginUser =
+        var loginUser: User? = null
     }
 }
