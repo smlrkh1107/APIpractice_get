@@ -1,21 +1,28 @@
 package kun.hee.apipractice_get.utils
 
 import android.content.Context
+import android.util.Log
 import okhttp3.*
+import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
 import org.json.JSONObject
 import java.io.IOException
 
 class ConnectServer {
-    interface JsonResponseHandler{ //제이슨 응답을 처리해준다
+    interface JsonResponseHandler { //제이슨 응답을 처리해준다
         fun onResponse(json: JSONObject)
     }
 
-    companion object{
+    companion object {
 
 
         private val BASE_URL = "http://192.168.0.243:5000"
 
-        fun postRequestLogin(context: Context, id:String, pw:String, handler: JsonResponseHandler?) {
+        fun postRequestLogin(
+            context: Context,
+            id: String,
+            pw: String,
+            handler: JsonResponseHandler?
+        ) {
             val client = OkHttpClient()
             val urlStr = "${BASE_URL}/auth"
 
@@ -50,9 +57,14 @@ class ConnectServer {
         }
 
 
-
-
-        fun putRequestSignUp(context: Context, id:String, pw:String, name:String, phoneNum:String, handler: JsonResponseHandler?){
+        fun putRequestSignUp(
+            context: Context,
+            id: String,
+            pw: String,
+            name: String,
+            phoneNum: String,
+            handler: JsonResponseHandler?
+        ) {
             val client = OkHttpClient()
             val urlStr = "${BASE_URL}/auth"
 
@@ -68,7 +80,7 @@ class ConnectServer {
                 .put(formBody)
                 .build()
 
-            client.newCall(request).enqueue(object : Callback{ // {}를 해야 object alt+enter됨
+            client.newCall(request).enqueue(object : Callback { // {}를 해야 object alt+enter됨
                 override fun onFailure(call: Call, e: IOException) {
 
                     e.printStackTrace()
@@ -85,6 +97,40 @@ class ConnectServer {
 
 
         }
+
+        fun getRequestMyInfo(context: Context, handler: JsonResponseHandler?) {
+
+            val client = OkHttpClient()
+            val urlBuilder = "${BASE_URL}/my_info".toHttpUrlOrNull()!!.newBuilder()
+            urlBuilder.addEncodedQueryParameter("device_token", "임시기기토큰")
+            urlBuilder.addEncodedQueryParameter("os", "Android")
+//            다음페이지 누를때 url &page = 5 이런거 자동으로 붙이기..
+
+            val urlStr = urlBuilder.build().toString()
+            Log.d("완성된 주소", urlStr)
+
+            val request = Request.Builder()
+                .url(urlStr)
+                .header("X-Http-Token", ContextUtil.getUserToken(context))
+                .build()
+
+            client.newCall(request).enqueue(object : Callback { // {}를 해야 object alt+enter됨
+                override fun onFailure(call: Call, e: IOException) {
+
+                    e.printStackTrace()
+                }
+
+                override fun onResponse(call: Call, response: Response) {
+                    val body = response.body!!.string()
+                    val json = JSONObject(body)
+
+                    handler?.onResponse(json)
+                }
+
+            })
+        }
+
     }
 
 }
+
