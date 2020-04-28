@@ -23,6 +23,7 @@ class MyPageActivity : BaseActivity() {
             alert.setTitle("로그아웃")
             alert.setMessage("정말 로그아웃 하시겠습니까?")
             alert.setPositiveButton("로그아웃",{dialog, which ->
+
 //            로그인은 토큰가져오기였으니, 로그아웃은 토큰없애자
                 ContextUtil.setUserToken(mContext,"") //토큰을 지우면~
 //            다시로그인화면으로이동
@@ -45,6 +46,8 @@ class MyPageActivity : BaseActivity() {
 10
         nameTxt.text = GlobalData.loginUser?.name //?로 받을시, 자동로그인시 앱이 죽지는 않는데 가져오질 못해
         phoneTxt.text = GlobalData.loginUser?.phoneNum
+
+        storeCategoryTxt.text = GlobalData.loginUser?.storeCategory?.title //login 유저가null이면 카테고리도 null일테니
 
     }
 
